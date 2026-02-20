@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="text-4xl font-bold">{{ project.title }}</h1>
+  <div class="mt-4 flex flex-wrap gap-2">
+    {% for tag in project.tech_stack.all %}<span class="chip">{{ tag.name }}</span>{% endfor %}
+  </div>
+  <div class="prose prose-invert max-w-none mt-8">{{ project.description|safe }}</div>
+
+  {% if project.gallery_images.all %}
+  <div class="grid sm:grid-cols-2 gap-4 mt-10">
+    {% for image in project.gallery_images.all %}
+      {% if image.image %}<img src="{{ image.image.url }}" alt="{{ image.caption }}" class="rounded-xl border border-slate-800">{% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="mt-8 flex gap-3">
+    {% if project.live_url %}<a href="{{ project.live_url }}" class="btn-primary" target="_blank" rel="noopener noreferrer">Live URL</a>{% endif %}
+    {% if project.github_url %}<a href="{{ project.github_url }}" class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>{% endif %}
+  </div>
+</section>
+{% endblock %}

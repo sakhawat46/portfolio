@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="section-title">Blog</h1>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+    {% for post in posts %}
+    <article class="card">
+      <h2 class="text-xl font-semibold"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+      <p class="text-slate-300 mt-2">{{ post.meta_description|default:post.title }}</p>
+    </article>
+    {% empty %}<p class="text-slate-400">No published posts.</p>{% endfor %}
+  </div>
+
+  {% include "partials/pagination.html" with page_obj=page_obj %}
+</section>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% load navigation_tags %}
+<header class="sticky top-0 z-30 backdrop-blur bg-slate-950/85 border-b border-slate-800">
+  <nav class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+    <a href="{% url 'portfolio:home' %}" class="text-lg font-bold tracking-tight">{{ site_settings.site_name|default:"Portfolio" }}</a>
+    <div class="hidden md:flex gap-6 text-sm">
+      <a class="{% active_class 'portfolio:home' %}" href="{% url 'portfolio:home' %}">Home</a>
+      <a class="{% active_class 'portfolio:about' %}" href="{% url 'portfolio:about' %}">About</a>
+      <a class="{% active_class 'portfolio:project_list' %}" href="{% url 'portfolio:project_list' %}">Projects</a>
+      <a class="{% active_class 'blog:list' %}" href="{% url 'blog:list' %}">Blog</a>
+      <a class="{% active_class 'contact:form' %}" href="{% url 'contact:form' %}">Contact</a>
+    </div>
+    <button id="theme-toggle" class="rounded-lg border border-slate-700 px-3 py-1.5 text-xs">Toggle theme</button>
+  </nav>
+</header>

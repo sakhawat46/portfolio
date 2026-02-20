@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="section-title">About</h1>
+  {% if about %}<div class="prose prose-invert max-w-none mt-6">{{ about.content|safe }}</div>{% endif %}
+</section>
+
+<section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+  <h2 class="section-title">Skills</h2>
+  <div class="grid md:grid-cols-2 gap-6 mt-6">
+    {% for category in skill_categories %}
+    <div class="card">
+      <h3 class="font-semibold text-lg">{{ category.name }}</h3>
+      <ul class="mt-4 space-y-2">
+        {% for skill in category.skills.all %}
+        <li class="flex items-center justify-between text-sm">
+          <span>{{ skill.name }}</span><span class="text-cyan-300">{{ skill.level }}%</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+  <h2 class="section-title">Experience</h2>
+  <div class="space-y-4 mt-6">
+    {% for item in experiences %}
+    <article class="card">
+      <h3 class="font-semibold">{{ item.role }} - {{ item.company }}</h3>
+      <p class="text-xs text-slate-400 mt-1">{{ item.start_date }} to {{ item.end_date|default:"Present" }}</p>
+      <p class="text-slate-300 mt-3 whitespace-pre-line">{{ item.responsibilities }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+  <h2 class="section-title">Education</h2>
+  <div class="space-y-4 mt-6">
+    {% for edu in educations %}
+    <article class="card">
+      <h3 class="font-semibold">{{ edu.degree }} - {{ edu.institution }}</h3>
+      <p class="text-xs text-slate-400 mt-1">{{ edu.start_date }} to {{ edu.end_date|default:"Present" }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

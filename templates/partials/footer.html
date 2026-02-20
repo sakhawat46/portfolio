@@ -1,0 +1,12 @@
+<footer class="border-t border-slate-800 mt-16">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-400 flex flex-col sm:flex-row gap-3 justify-between">
+    <p>{% if site_settings.copyright_text %}{{ site_settings.copyright_text }}{% else %}&copy; {% now "Y" %} {{ site_settings.site_name|default:"Portfolio" }}{% endif %}</p>
+    {% if site_settings and site_settings.social_links.all %}
+    <div class="flex gap-4">
+      {% for social in site_settings.social_links.all %}
+      <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300">{{ social.name }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</footer>

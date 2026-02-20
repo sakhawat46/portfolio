@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="section-title">Projects</h1>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+    {% for project in projects %}
+    <article class="card">
+      <h2 class="text-xl font-semibold"><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h2>
+      <p class="text-slate-300 mt-2">{{ project.meta_description|default:project.title }}</p>
+      <div class="mt-3 flex flex-wrap gap-2">
+        {% for tag in project.tech_stack.all %}
+        <span class="chip">{{ tag.name }}</span>
+        {% endfor %}
+      </div>
+    </article>
+    {% empty %}<p class="text-slate-400">No published projects.</p>{% endfor %}
+  </div>
+
+  {% include "partials/pagination.html" with page_obj=page_obj %}
+</section>
+{% endblock %}

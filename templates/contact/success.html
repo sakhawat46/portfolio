@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-20 text-center">
+  <h1 class="text-4xl font-bold">Message received</h1>
+  <p class="text-slate-300 mt-4">Thanks for reaching out. I will reply soon.</p>
+  <a href="{% url 'portfolio:home' %}" class="btn-primary mt-8 inline-block">Back to Home</a>
+</section>
+{% endblock %}

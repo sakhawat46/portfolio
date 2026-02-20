@@ -1,0 +1,11 @@
+### Django ###
+# db.sqlite3
+# media
+# .env
+
+
+# Environments
+venv/
+venv
+config.bat
+node_modules

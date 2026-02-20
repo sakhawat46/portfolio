@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="section-title">Contact</h1>
+  <form method="post" class="card mt-8 space-y-4">
+    {% csrf_token %}
+    {% for field in form %}
+      <div>
+        <label for="{{ field.id_for_label }}" class="block text-sm mb-1">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}<p class="text-rose-300 text-sm mt-1">{{ field.errors|striptags }}</p>{% endif %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn-primary">Send message</button>
+  </form>
+</section>
+{% endblock %}
